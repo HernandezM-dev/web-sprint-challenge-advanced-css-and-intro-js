@@ -315,14 +315,16 @@ For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte
 function lotsOfArt(arr){
 let finalArr = []
   for(let i = 0; i < arr.length-1; i++){
-    if(arr.paintings >= 100){
-      finalArr.push(arr.name[i]);
+    let num = parseFloat(arr[i].paintings)
+    if(num >= 100){
+      finalArr.push(arr[i].name);
     }
   }
   return finalArr;
 }
 
 console.log('Task 7');
+console.log(lotsOfArt(artists))
 
 
 // 🎨🎨 STRETCH 🎨🎨//
