@@ -207,12 +207,19 @@ const artists = [
 
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
-
-
+console.log('Task 1');
+console.log(artists[0].name);
+console.log(artists[2].bio);
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-
+artists.edit = function edit(arr, index, newData){
+ arr[index].name = newData;
+ return arr
+}
+artists.edit(artists, 8,"Vincent Van Gogh");
+console.log('Task 2');
+console.log(artists[8].name);
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
  *     (1) artists array
@@ -223,19 +230,40 @@ const artists = [
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(array, index) {
-    /* code here */
+    return `The artist at index ${array[index].id} is ${array[index].name}.`;
   }
-  
-  /**
+  console.log('Task 3');
+  console.log(getArtistByIndex(artists, 0));
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who lived in the 20th century (1900-2000) */
-
-function get20s(/* Code here */){
-
-  /* Code here */
-
+//solution 1
+// function get20s(arr){
+//   var finalArr = []
+//   for(let i = 0; i < arr.length-1; i++){
+//     let testString = arr[i].years;
+//     let testArr = testString.split('')
+//     if(testArr[0] == 1 && testArr[1] == 9 || testArr[7] == 1 && testArr[8] == 9 || testArr[7] == 2 && testArr[8] == 0 && testArr[9] == 0 && testArr[10] == 0){
+//       finalArr.push(arr[i].name);
+//     }
+//   }
+//     return finalArr;
+// }
+//solution 2
+function get20s(arr){
+  var finalArr = []
+  for(let i = 0; i < arr.length-1; i++){
+    var testString = arr[i].years;
+    var testArr = testString.split('-');
+    var endDate = parseFloat(testArr[1])
+    if(endDate <= 2000 && endDate >1900){
+      finalArr.push(arr[i].name);
+    }
+  }
+ return finalArr;
 }
+console.log('Task 4');
+console.log(get20s(artists));
 
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
@@ -248,10 +276,13 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
+function removeArtist(arr, index) {
+    arr.splice(index, 1);
+    console.log(arr.length);
+    return arr;
   }
-  
+  console.log('Task 5');
+  removeArtist(artists, 8);
   /**
 
 
@@ -269,12 +300,23 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should console.log() the new array with information added"*/
 
-function addArtist(/* Code here */){
+let newArtist = {
+  id: 28,
+  name: 'Michael Hernandez', 
+  years: '1992 - 2020',
+  genre: 'Web Design', 
+  nationality: 'Puerto Rican',
+  bio: 'IT employee working on becoming a web developer. Hobbies include music, video games, and watching anime.'
+};
 
-    /* Code here */
-
+function addArtist(arr, newData){
+    arr.push(newData);
+    return arr;
   }
 
+  console.log('Task 6');
+  addArtist(artists,newArtist);
+  console.log(artists[artists.length-1]);
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
     (1) artists array 
@@ -283,12 +325,19 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
-
-  /* Code here */
-
+function lotsOfArt(arr){
+let finalArr = []
+  for(let i = 0; i < arr.length-1; i++){
+    let num = parseFloat(arr[i].paintings)
+    if(num >= 100){
+      finalArr.push(arr[i].name);
+    }
+  }
+  return finalArr;
 }
 
+console.log('Task 7');
+console.log(lotsOfArt(artists))
 
 
 // 🎨🎨 STRETCH 🎨🎨//
